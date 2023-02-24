@@ -1,5 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {
+  useParams,
+  Link,
+  useSearchParams,
+  useNavigate,
+} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import currency from 'currency-formatter';
 import Nav from '../../components/home/Nav';
 import Header from '../../components/home/Header';
@@ -11,8 +16,31 @@ import {
 } from '../../store/services/userOrdersService';
 import Pagination from '../../components/Pagination';
 import { getDiscountPrice } from '../../utils/utils';
+import { useVerifyPaymentQuery } from '../../store/services/paymentService';
+import { useEffect } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
+import { emptyCart } from '../../store/reducers/cartReducer';
 
 const UserOrders = () => {
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get('session_id');
+
+  const { data: stripeSession, isSuccess } = useVerifyPaymentQuery(sessionId, {
+    skip: sessionId ? false : true,
+  });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      localStorage.removeItem('cart');
+      toast.success(stripeSession.msg);
+      dispatch(emptyCart());
+      navigate('/orders');
+    }
+  }, [isSuccess, stripeSession?.msg, dispatch, navigate]);
+
   let { page } = useParams();
   page = page ? page : 1;
   const { user } = useSelector((state) => state.authReducer);
@@ -26,6 +54,7 @@ const UserOrders = () => {
     <>
       <Nav />
       <div className='mt-[70px]'>
+        <Toaster position='top-right' />
         <Header>my orders</Header>
         <div className='custom-container mt-[40px]'>
           <div className='flex flex-wrap -mx-6'>
