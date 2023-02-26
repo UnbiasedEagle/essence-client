@@ -4,7 +4,7 @@ const productService = createApi({
   reducerPath: 'product',
   tagTypes: 'products',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dull-foal-getup.cyclic.app/api/',
+    baseUrl: 'http://localhost:5000/api/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState()?.authReducer?.adminToken;
 

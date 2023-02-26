@@ -12,7 +12,7 @@ const paymentService = createApi({
 
       return headers;
     },
-    baseUrl: 'https://dull-foal-getup.cyclic.app/api/',
+    baseUrl: 'http://localhost:5000/api/',
   }),
   endpoints: (builder) => ({
     sendPayment: builder.mutation({

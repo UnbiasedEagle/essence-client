@@ -4,7 +4,7 @@ const categoryService = createApi({
   reducerPath: 'category',
   tagTypes: 'categories',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dull-foal-getup.cyclic.app/api/',
+    baseUrl: 'http://localhost:5000/api/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState()?.authReducer?.adminToken;
 

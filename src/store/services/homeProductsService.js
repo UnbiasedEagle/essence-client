@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const homeProductsService = createApi({
   reducerPath: 'homeProducts',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dull-foal-getup.cyclic.app/api/',
+    baseUrl: 'http://localhost:5000/api/',
   }),
   endpoints: (builder) => ({
     getProductsFromCategory: builder.query({

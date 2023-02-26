@@ -4,7 +4,7 @@ const userOrdersService = createApi({
   reducerPath: 'user-orders',
   tagTypes: 'orders',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dull-foal-getup.cyclic.app/api/',
+    baseUrl: 'http://localhost:5000/api/',
     prepareHeaders: (headers, { getState }) => {
       const reducers = getState();
       const token = reducers?.authReducer?.userToken;
