@@ -60,7 +60,7 @@ const DetailCard = ({ product }) => {
 
     cartItems.push(currentProduct);
     localStorage.setItem('cart', JSON.stringify(cartItems));
-
+    toast.success('Item added to cart');
     dispatch(addToCart(currentProduct));
   };
 
