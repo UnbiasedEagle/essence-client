@@ -136,7 +136,7 @@ const UserOrderDetails = () => {
                                   data?.details?.productId?.discount
                                 ),
                                 {
-                                  code: 'USD',
+                                  code: 'INR',
                                 }
                               )}
                             </td>

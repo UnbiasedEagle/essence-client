@@ -85,7 +85,7 @@ const UserOrders = () => {
                                 item.productId.discount
                               ) * item.quantities,
                               {
-                                code: 'USD',
+                                code: 'INR',
                               }
                             );
                             return (
